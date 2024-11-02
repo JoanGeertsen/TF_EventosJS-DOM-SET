@@ -124,20 +124,38 @@
     
             <div class="formulario-botones">
                 <button type="submit" id="boton-enviar" class="btn">Cargar Evento</button>
+                <button type="button" id="boton-actualizar" class="btn">Actualizar</button>
                 <button type="reset" id="boton-reset" class="btn">Resetear</button>
             </div>
         </form>
     </section>
 
     <section class="gestion-eventos" id="eventos">
-        <h2>Gestionar Eventos</h2>        
+        <h2>Listado</h2>
+
+        <div id="resultado">
+
+            <table>
+                <tr>
+                    <th>Evento</th>
+                    <th>Fecha</th>
+                    <th>Ciudad</th>
+                    <th>Editar</th>
+                    <th>Eliminar</th>
+                </tr>
+                
+            </table>
+            
+
+        </div>
+
         <div class="botones-gestion">
             <button id="listarBtn" class="btn">Listar Eventos</button>
             <button id="buscarBtn" class="btn">Buscar Evento</button>
             <button id="filtrarBtn" class="btn">Filtrar por Ciudad</button>
             <button id="extraBtn" class="btn">Ordenar por Fecha</button>
         </div>
-        <div id="resultado"></div>
+        
     </section>        
 
     <footer>
