@@ -10,6 +10,25 @@ let proximo = (function () {
     };
 })();
 
+function actualziarTabla(){
+    const tablaResultados = document.getElementById('tabla-resultados').querySelector('tbody');
+
+    tablaResultados.innerHTML = "";
+
+    eventos.forEach(evento => {
+        const fila = document.createElement('tr');
+    fila.innerHTML = `
+                    <td>${evento.nombre}</td>
+                    <td>${evento.fecha}</td>
+                    <td>${evento.ciudad}</td>
+                    <td>imagen editar</td>
+                    <td>imagen eliminar</td>
+                `;
+
+    tablaResultados.appendChild(fila);
+    });
+}
+
 document.getElementById('boton-enviar').addEventListener('click', function(event) {    
     const eventoNombre = document.getElementById('evento-nombre').value;
     const tipoEvento = document.querySelector('input[name="evento-tipo"]:checked');
@@ -22,7 +41,7 @@ document.getElementById('boton-enviar').addEventListener('click', function(event
     const valoracion = document.getElementById('evento-puntuacion').value;
     const observaciones = document.getElementById('evento-notas').value;
 
-    const tablaResultados = document.getElementById('tabla-resultados').querySelector('tbody');
+    
 
     // Validaciones
     if (!eventoNombre || !tipoEvento || !fechaEvento || !direccion || !capacidad || !valoracion) {
@@ -51,19 +70,9 @@ document.getElementById('boton-enviar').addEventListener('click', function(event
         observaciones: observaciones
     };
     
-    eventos.push(evento);
+    eventos.push(evento); console.log("Evento creado");
 
-    const fila = document.createElement('tr');
-    fila.innerHTML = `
-                    <td>${evento.nombre}</td>
-                    <td>${evento.fecha}</td>
-                    <td>${evento.ciudad}</td>
-                    <td>imagen editar</td>
-                    <td>imagen eliminar</td>
-                `;
-
-
-    tablaResultados.appendChild(fila);
+    actualziarTabla();
 
     /*
     alert(`Evento ${evento.nombre} registrado con éxito.
@@ -77,10 +86,10 @@ document.getElementById('boton-enviar').addEventListener('click', function(event
         Gratuito: ${evento.gratuito ? 'Sí' : 'No'}
         Costo: ${evento.costo}
         Valoración: ${evento.valoracion}
-        Observaciones: ${evento.observaciones}`);
+        Observaciones: ${evento.observaciones}`);*/
 
     // Resetea los campos del formulario
-    document.getElementById('evento-form').reset();*/
+    document.getElementById('evento-form').reset();
 });
 
 const valorPuntuacion = document.getElementById('valorPuntuacion');
