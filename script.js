@@ -22,6 +22,8 @@ document.getElementById('boton-enviar').addEventListener('click', function(event
     const valoracion = document.getElementById('evento-puntuacion').value;
     const observaciones = document.getElementById('evento-notas').value;
 
+    const tablaResultados = document.getElementById('tabla-resultados').querySelector('tbody');
+
     // Validaciones
     if (!eventoNombre || !tipoEvento || !fechaEvento || !direccion || !capacidad || !valoracion) {
         alert("Por favor, complete todos los campos requeridos.");
@@ -51,7 +53,19 @@ document.getElementById('boton-enviar').addEventListener('click', function(event
     
     eventos.push(evento);
 
-    // Muestra un mensaje de éxito
+    const fila = document.createElement('tr');
+    fila.innerHTML = `
+                    <td>${evento.nombre}</td>
+                    <td>${evento.fecha}</td>
+                    <td>${evento.ciudad}</td>
+                    <td>imagen editar</td>
+                    <td>imagen eliminar</td>
+                `;
+
+
+    tablaResultados.appendChild(fila);
+
+    /*
     alert(`Evento ${evento.nombre} registrado con éxito.
         Detalles:
         Número: ${evento.numero}
@@ -66,7 +80,7 @@ document.getElementById('boton-enviar').addEventListener('click', function(event
         Observaciones: ${evento.observaciones}`);
 
     // Resetea los campos del formulario
-    document.getElementById('evento-form').reset();
+    document.getElementById('evento-form').reset();*/
 });
 
 const valorPuntuacion = document.getElementById('valorPuntuacion');
