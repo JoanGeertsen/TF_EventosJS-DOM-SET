@@ -109,11 +109,28 @@ inputPuntuacion.addEventListener('input', function() {
     valorPuntuacion.textContent = inputPuntuacion.value;
 });
 
-document.getElementById('contieneBtn').addEventListener('click', function() {
+document.getElementById('contieneBtn').addEventListener('click', function() {    
+    let inputText = document.getElementById("textoFiltro").value;
+    const eventosEncontrados = eventos.filter(e => e.nombre.toLowerCase().includes(inputText.toLowerCase()));
 
+    actualziarTabla(eventosEncontrados);
 });
 
-document.getElementById('buscarBtn').addEventListener('click', function() {
+document.getElementById('comienzaBtn').addEventListener('click', function() {    
+    let inputText = document.getElementById("textoFiltro").value;
+    const eventosEncontrados = eventos.filter(e => new RegExp(`^${inputText}`, 'i').test(e.nombre));
+
+    actualziarTabla(eventosEncontrados);
+});
+
+document.getElementById('finalizaBtn').addEventListener('click', function() {    
+    let inputText = document.getElementById("textoFiltro").value;
+    const eventosEncontrados = eventos.filter(e => new RegExp(`${inputText}$`, 'i').test(e.nombre));
+
+    actualziarTabla(eventosEncontrados);
+});
+
+document.getElementById('buscarBtn').addEventListener('click', function() {    
     const eventoNombre = prompt("Ingrese el nombre del evento a buscar:");
     let resultadoDiv = document.getElementById('resultado');
     resultadoDiv.innerHTML = "";  
