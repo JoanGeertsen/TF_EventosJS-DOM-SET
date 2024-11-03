@@ -261,6 +261,10 @@ nav ul li a:hover {
     transition: background-color 0.3s;
 }
 
+#boton-actualizar{
+    display: none;
+}
+
 .formulario-botones .btn:hover {
     background-color: var(--acento-secundario); 
 }
@@ -361,7 +365,7 @@ textarea {
 }
 
 img{
-    width: 20%;
+    width: 20%;  
 }
 
 .gestion-eventos table tr:nth-child(even) {
@@ -377,9 +381,6 @@ img{
     font-size: 1rem;
     background-color: #1e1e1e;
 }
-
-
-
 
 /* Footer */
 footer {

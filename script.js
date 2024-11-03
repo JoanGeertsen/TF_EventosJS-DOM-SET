@@ -15,13 +15,13 @@ function actualziarTabla(){
 
     tablaResultados.innerHTML = "";
 
-    eventos.forEach(evento => {
+    eventos.forEach((evento, i) => {
         const fila = document.createElement('tr');
     fila.innerHTML = `
                     <td>${evento.nombre}</td>
                     <td>${evento.fecha}</td>
                     <td>${evento.ciudad}</td>
-                    <td><img src="recursos/editar.png" alt="Editar" style="cursor: pointer;"></td>
+                    <td><img src="recursos/editar.png" alt="Editar" onclick="editarEvento(${i})" style="cursor: pointer;"></td>
                     <td><img src="recursos/eliminar.png" alt="Eliminar" style="cursor: pointer;"></td>
                 `;
 
@@ -29,6 +29,13 @@ function actualziarTabla(){
     });
 
     document.getElementById('evento-form').reset();
+}
+
+function editarEvento(index){    
+    console.log(`Editando evento ${index}`);
+    document.getElementById("boton-enviar").style.display = "none";
+    document.getElementById("boton-reset").style.display = "none";
+    document.getElementById("boton-actualizar").style.display = "block";
 }
 
 document.getElementById('boton-enviar').addEventListener('click', function() {    
@@ -76,9 +83,7 @@ document.getElementById('boton-enviar').addEventListener('click', function() {
         eventos.push(evento); console.log("Evento creado");
 
         actualziarTabla();
-    }
-
-   
+    }   
 
     /*
     alert(`Evento ${evento.nombre} registrado con éxito.
