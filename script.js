@@ -21,15 +21,17 @@ function actualziarTabla(){
                     <td>${evento.nombre}</td>
                     <td>${evento.fecha}</td>
                     <td>${evento.ciudad}</td>
-                    <td>imagen editar</td>
-                    <td>imagen eliminar</td>
+                    <td><img src="recursos/editar.png" alt="Editar" style="cursor: pointer;"></td>
+                    <td><img src="recursos/eliminar.png" alt="Eliminar" style="cursor: pointer;"></td>
                 `;
 
     tablaResultados.appendChild(fila);
     });
+
+    document.getElementById('evento-form').reset();
 }
 
-document.getElementById('boton-enviar').addEventListener('click', function(event) {    
+document.getElementById('boton-enviar').addEventListener('click', function() {    
     const eventoNombre = document.getElementById('evento-nombre').value;
     const tipoEvento = document.querySelector('input[name="evento-tipo"]:checked');
     const fechaEvento = document.getElementById('evento-fecha').value;
@@ -52,27 +54,31 @@ document.getElementById('boton-enviar').addEventListener('click', function(event
     // Verifica si ya existe un evento con el mismo nombre
     if (eventos.some(evento => evento.nombre === eventoNombre)) {
         alert("El nombre del evento ya está registrado.");
-        return;
+    }
+    
+    else
+    {
+         // Crea el objeto del evento
+         const evento = {
+            numero: proximo(),
+            nombre: eventoNombre,
+            tipo: tipoEvento.value,
+            fecha: fechaEvento,
+            direccion: direccion,
+            ciudad: ciudad,
+            capacidad: capacidad,
+            gratuito: gratuito,
+            costo: gratuito ? 'Gratuito' : costoEntrada,
+            valoracion: valoracion,
+            observaciones: observaciones
+         };
+    
+        eventos.push(evento); console.log("Evento creado");
+
+        actualziarTabla();
     }
 
-    // Crea el objeto del evento
-    const evento = {
-        numero: proximo(),
-        nombre: eventoNombre,
-        tipo: tipoEvento.value,
-        fecha: fechaEvento,
-        direccion: direccion,
-        ciudad: ciudad,
-        capacidad: capacidad,
-        gratuito: gratuito,
-        costo: gratuito ? 'Gratuito' : costoEntrada,
-        valoracion: valoracion,
-        observaciones: observaciones
-    };
-    
-    eventos.push(evento); console.log("Evento creado");
-
-    actualziarTabla();
+   
 
     /*
     alert(`Evento ${evento.nombre} registrado con éxito.
@@ -88,8 +94,7 @@ document.getElementById('boton-enviar').addEventListener('click', function(event
         Valoración: ${evento.valoracion}
         Observaciones: ${evento.observaciones}`);*/
 
-    // Resetea los campos del formulario
-    document.getElementById('evento-form').reset();
+    // Resetea los campos del formulario    
 });
 
 const valorPuntuacion = document.getElementById('valorPuntuacion');
