@@ -305,6 +305,7 @@ textarea {
 
 .botones-gestion .btn {
     padding: 10px 20px;
+    width: 100%;
     background-color: var(--acento-principal); 
     color: var(--fondo-primario);
     border: none;
@@ -381,6 +382,17 @@ img{
     font-size: 1rem;
     background-color: #1e1e1e;
 }
+
+#textoFiltro{    
+        width: 100%;
+        padding: 10px;
+        background-color: #2c2c2c;
+        border: 2px solid var(--acento-principal); 
+        border-radius: 4px;
+        color: #f5f5f5;
+        outline: none;
+        font-size: 1rem;
+    }
 
 /* Footer */
 footer {

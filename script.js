@@ -1,5 +1,5 @@
 let eventos = [];
-let numeroEvento = 1;
+let numeroEvento = 1; //Borrar
 
 //Función proximo de la teoría
 let proximo = (function () {
@@ -10,12 +10,12 @@ let proximo = (function () {
     };
 })();
 
-function actualziarTabla(){
+function actualziarTabla(tabla){
     const tablaResultados = document.getElementById('tabla-resultados').querySelector('tbody');
 
     tablaResultados.innerHTML = "";
 
-    eventos.forEach((evento, i) => {
+    tabla.forEach((evento, i) => {
         const fila = document.createElement('tr');
     fila.innerHTML = `
                     <td>${evento.nombre}</td>
@@ -82,7 +82,7 @@ document.getElementById('boton-enviar').addEventListener('click', function() {
     
         eventos.push(evento); console.log("Evento creado");
 
-        actualziarTabla();
+        actualziarTabla(eventos);
     }   
 
     /*
@@ -109,31 +109,9 @@ inputPuntuacion.addEventListener('input', function() {
     valorPuntuacion.textContent = inputPuntuacion.value;
 });
 
+document.getElementById('contieneBtn').addEventListener('click', function() {
 
-document.getElementById('listarBtn').addEventListener('click', function() {
-    let resultadoDiv = document.getElementById('resultado');
-    resultadoDiv.innerHTML = "";  // Limpiar el contenido anterior
-    
-    if (eventos.length === 0) {
-        resultadoDiv.innerHTML = "<p>No hay eventos registrados aún.</p>";
-        return;
-    }
-
-    // Título con clase CSS
-    let titulo = document.createElement('h3');
-    titulo.textContent = "Eventos Registrados:";
-    titulo.classList.add('titulo-eventos');
-    resultadoDiv.appendChild(titulo);
-
-    // Listar los eventos
-    eventos.forEach(evento => {
-        let p = document.createElement('p');
-        p.innerHTML = `<strong>${evento.nombre}</strong> - ${evento.fecha}`;
-        p.classList.add('nombre-evento'); 
-        resultadoDiv.appendChild(p);
-    });
 });
-
 
 document.getElementById('buscarBtn').addEventListener('click', function() {
     const eventoNombre = prompt("Ingrese el nombre del evento a buscar:");
