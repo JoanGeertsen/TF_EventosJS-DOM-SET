@@ -21,7 +21,7 @@ function actualziarTabla(tabla){
                     <td>${evento.nombre}</td>
                     <td>${evento.fecha}</td>
                     <td>${evento.ciudad}</td>
-                    <td><img src="recursos/editar.png" alt="Editar" onclick="editarEvento(${i})" style="cursor: pointer;"></td>
+                    <td><img src="recursos/editar.png" alt="Editar" onclick="editarEvento('${evento.nombre}')" style="cursor: pointer;"></td>
                     <td><img src="recursos/eliminar.png" alt="Eliminar" style="cursor: pointer;"></td>
                 `;
 
@@ -31,14 +31,46 @@ function actualziarTabla(tabla){
     document.getElementById('evento-form').reset();
 }
 
-function editarEvento(index){    
-    console.log(`Editando evento ${index}`);
+function editarEvento(nombreEvento){    
+    console.log(`Editando evento ${nombreEvento}`);
     document.getElementById("boton-enviar").style.display = "none";
     document.getElementById("boton-reset").style.display = "none";
     document.getElementById("boton-actualizar").style.display = "block";
+
+    const eventoAEditar = eventos.find(evento => evento.nombre === nombreEvento);
+
+    //Setea los valores en el formulario
+    document.getElementById('evento-nombre').value = eventoAEditar.nombre;
+    document.getElementById('evento-nombre').disabled = true;
+    document.getElementById(`${eventoAEditar.tipo}`).checked=true;
+    document.getElementById("evento-fecha").value = eventoAEditar.fecha;
+    document.getElementById("evento-direccion").value = eventoAEditar.direccion;
+    document.getElementById("evento-cidad").value = eventoAEditar.ciudad;
+    document.getElementById("evento-capacidad").value = eventoAEditar.capacidad;
+    document.getElementById("evento-gratuito").checked = eventoAEditar.gratuito;
+    document.getElementById("evento-costo").value = eventoAEditar.costo;
+    document.getElementById("evento-puntuacion").value = eventoAEditar.valoracion;
+    document.getElementById("evento-notas").value = eventoAEditar.observaciones;
+
 }
 
-document.getElementById('boton-enviar').addEventListener('click', function() {    
+document.getElementById('boton-actualizar').addEventListener('click', function() {
+    let nombreEvento = document.getElementById('evento-nombre').value;
+    const index = eventos.findIndex(evento => evento.nombre === nombreEvento);
+    eventos.splice(index, 1);
+
+    agregarEvento();
+
+
+    document.getElementById("boton-enviar").style.display = "block";
+    document.getElementById("boton-reset").style.display = "block";
+    document.getElementById("boton-actualizar").style.display = "none";
+    document.getElementById('evento-nombre').disabled = false;
+});   
+
+document.getElementById('boton-enviar').addEventListener('click', agregarEvento)
+
+function agregarEvento() {    
     const eventoNombre = document.getElementById('evento-nombre').value;
     const tipoEvento = document.querySelector('input[name="evento-tipo"]:checked');
     const fechaEvento = document.getElementById('evento-fecha').value;
@@ -100,7 +132,7 @@ document.getElementById('boton-enviar').addEventListener('click', function() {
         Observaciones: ${evento.observaciones}`);*/
 
     // Resetea los campos del formulario    
-});
+};
 
 const valorPuntuacion = document.getElementById('valorPuntuacion');
 const inputPuntuacion = document.getElementById('evento-puntuacion');
