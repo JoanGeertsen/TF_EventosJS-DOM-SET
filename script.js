@@ -42,7 +42,13 @@ function eliminarEvento(nombreEvento){
             actualziarTabla(eventos);
             actualizarEventosDestacados();
         } 
-    else console.log("Eliminación cancelada.");    
+    else console.log("Eliminación cancelada.");
+    
+    document.getElementById("boton-enviar").style.display = "block";
+    document.getElementById("boton-reset").style.display = "block";
+    document.getElementById("boton-actualizar").style.display = "none";
+    document.getElementById("boton-cancelar").style.display = "none";
+    document.getElementById('evento-nombre').disabled = false;
   }
 
 function editarEvento(nombreEvento){    
