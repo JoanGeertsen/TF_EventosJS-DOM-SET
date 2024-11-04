@@ -17,12 +17,12 @@ function actualziarTabla(tabla){
 
     tabla.forEach((evento, i) => {
         const fila = document.createElement('tr');
-    fila.innerHTML = `
+        fila.innerHTML = `
                     <td>${evento.nombre}</td>
                     <td>${evento.fecha}</td>
                     <td>${evento.ciudad}</td>
                     <td><img src="recursos/editar.png" alt="Editar" onclick="editarEvento('${evento.nombre}')" style="cursor: pointer;"></td>
-                    <td><img src="recursos/eliminar.png" alt="Eliminar" style="cursor: pointer;"></td>
+                    <td><img src="recursos/eliminar.png" alt="Eliminar" onclick="eliminarEvento('${evento.nombre}')" style="cursor: pointer;"></td>
                 `;
 
     tablaResultados.appendChild(fila);
@@ -30,6 +30,19 @@ function actualziarTabla(tabla){
 
     document.getElementById('evento-form').reset();
 }
+
+function eliminarEvento(nombreEvento){    
+    const confirmacion = confirm(`¿Estás seguro de que quieres eliminar el evento "${nombreEvento}"?`);
+    
+    if (confirmacion) {        
+        const index = eventos.findIndex(evento => evento.nombre === nombreEvento);       
+            eventos.splice(index, 1);
+            console.log(`Evento "${nombreEvento}" eliminado exitosamente.`);     
+        
+            actualziarTabla(eventos);
+        } 
+    else console.log("Eliminación cancelada.");    
+  }
 
 function editarEvento(nombreEvento){    
     console.log(`Editando evento ${nombreEvento}`);
