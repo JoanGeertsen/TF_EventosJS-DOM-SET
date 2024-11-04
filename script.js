@@ -36,6 +36,7 @@ function editarEvento(nombreEvento){
     document.getElementById("boton-enviar").style.display = "none";
     document.getElementById("boton-reset").style.display = "none";
     document.getElementById("boton-actualizar").style.display = "block";
+    document.getElementById("boton-cancelar").style.display = "block";
 
     const eventoAEditar = eventos.find(evento => evento.nombre === nombreEvento);
 
@@ -65,10 +66,21 @@ document.getElementById('boton-actualizar').addEventListener('click', function()
     document.getElementById("boton-enviar").style.display = "block";
     document.getElementById("boton-reset").style.display = "block";
     document.getElementById("boton-actualizar").style.display = "none";
+    document.getElementById("boton-cancelar").style.display = "none";
     document.getElementById('evento-nombre').disabled = false;
-});   
+});
 
-document.getElementById('boton-enviar').addEventListener('click', agregarEvento)
+document.getElementById('boton-cancelar').addEventListener('click', function() {
+    document.getElementById("boton-enviar").style.display = "block";
+    document.getElementById("boton-reset").style.display = "block";
+    document.getElementById("boton-actualizar").style.display = "none";
+    document.getElementById("boton-cancelar").style.display = "none";
+    document.getElementById('evento-nombre').disabled = false;
+
+    document.getElementById('evento-form').reset();
+});
+
+document.getElementById('boton-enviar').addEventListener('click', agregarEvento);
 
 function agregarEvento() {    
     const eventoNombre = document.getElementById('evento-nombre').value;

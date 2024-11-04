@@ -261,7 +261,7 @@ nav ul li a:hover {
     transition: background-color 0.3s;
 }
 
-#boton-actualizar{
+#boton-actualizar, #boton-cancelar{
     display: none;
 }
 
