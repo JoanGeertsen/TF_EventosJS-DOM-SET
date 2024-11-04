@@ -205,7 +205,7 @@ function actualizarEventosDestacados() {
             <h3>${evento.nombre}</h3>
             <p>Fecha: ${evento.fecha}</p>
             <p>Ciudad: ${evento.ciudad}</p>
-            <a href="#" class="btn">Ver más</a>
+            <a href="#eventos" class="btn">Ver más</a>
         `;
 
         cartelera.appendChild(articulo); 
