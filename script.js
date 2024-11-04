@@ -1,5 +1,4 @@
 let eventos = [];
-let numeroEvento = 1; //Borrar
 
 //Función proximo de la teoría
 let proximo = (function () {
@@ -37,7 +36,8 @@ function eliminarEvento(nombreEvento){
     if (confirmacion) {        
         const index = eventos.findIndex(evento => evento.nombre === nombreEvento);       
             eventos.splice(index, 1);
-            console.log(`Evento "${nombreEvento}" eliminado exitosamente.`);     
+
+            alert(`Evento "${nombreEvento}" eliminado exitosamente.`);     
         
             actualziarTabla(eventos);
         } 
@@ -93,6 +93,22 @@ document.getElementById('boton-cancelar').addEventListener('click', function() {
     document.getElementById('evento-form').reset();
 });
 
+function mensajeEvento(evento){    
+    alert(`
+        Evento ${evento.nombre} registrado con éxito.
+        Detalles:
+        Número: ${evento.numero}
+        Tipo: ${evento.tipo}
+        Fecha: ${evento.fecha}
+        Dirección: ${evento.direccion}
+        Ciudad: ${evento.ciudad}
+        Capacidad: ${evento.capacidad}
+        Gratuito: ${evento.gratuito ? 'Sí' : 'No'}
+        Costo: ${evento.costo}
+        Valoración: ${evento.valoracion}
+        Observaciones: ${evento.observaciones}`);  
+}
+
 document.getElementById('boton-enviar').addEventListener('click', agregarEvento);
 
 function agregarEvento() {    
@@ -139,24 +155,10 @@ function agregarEvento() {
     
         eventos.push(evento); console.log("Evento creado");
 
+        mensajeEvento(evento);
+
         actualziarTabla(eventos);
-    }   
-
-    /*
-    alert(`Evento ${evento.nombre} registrado con éxito.
-        Detalles:
-        Número: ${evento.numero}
-        Tipo: ${evento.tipo}
-        Fecha: ${evento.fecha}
-        Dirección: ${evento.direccion}
-        Ciudad: ${evento.ciudad}
-        Capacidad: ${evento.capacidad}
-        Gratuito: ${evento.gratuito ? 'Sí' : 'No'}
-        Costo: ${evento.costo}
-        Valoración: ${evento.valoracion}
-        Observaciones: ${evento.observaciones}`);*/
-
-    // Resetea los campos del formulario    
+    }        
 };
 
 const valorPuntuacion = document.getElementById('valorPuntuacion');
