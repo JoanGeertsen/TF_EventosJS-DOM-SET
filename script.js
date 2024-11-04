@@ -40,6 +40,7 @@ function eliminarEvento(nombreEvento){
             alert(`Evento "${nombreEvento}" eliminado exitosamente.`);     
         
             actualziarTabla(eventos);
+            actualizarEventosDestacados();
         } 
     else console.log("Eliminación cancelada.");    
   }
@@ -158,6 +159,7 @@ function agregarEvento() {
         mensajeEvento(evento);
 
         actualziarTabla(eventos);
+        actualizarEventosDestacados();
     }        
 };
 
@@ -188,4 +190,43 @@ document.getElementById('finalizaBtn').addEventListener('click', function() {
 
     actualziarTabla(eventosEncontrados);
 });
+
+function actualizarEventosDestacados() {
+    let cartelera = document.getElementsByClassName("eventos-grid")[0];
+    let ultimosEventos = eventos.slice(-3);
+
+    cartelera.innerHTML = ""; 
+
+    ultimosEventos.forEach(evento => {
+        let articulo = document.createElement('article');
+        articulo.classList.add("evento");    
+        
+        articulo.innerHTML = `
+            <h3>${evento.nombre}</h3>
+            <p>Fecha: ${evento.fecha}</p>
+            <p>Ciudad: ${evento.ciudad}</p>
+            <a href="#" class="btn">Ver más</a>
+        `;
+
+        cartelera.appendChild(articulo); 
+    });
+
+    // Muestra u oculta el elemento dummy según el número de eventos
+    if (eventos.length > 0)    
+        document.getElementById("dummy").style.display = "none";
+    else
+    {
+        let articulo = document.createElement('article');
+        articulo.classList.add("evento");
+        articulo.id = "dummy";
+        
+        articulo.innerHTML = `            
+            <p>Aún no hay eventos registrados</p>
+            <a href="#formulario" class="btn">Registrar</a>
+        `;
+
+        cartelera.appendChild(articulo);
+    }        
+};
+
 
