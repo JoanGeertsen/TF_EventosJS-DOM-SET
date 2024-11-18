@@ -199,7 +199,9 @@ document.getElementById('finalizaBtn').addEventListener('click', function() {
 
 function actualizarEventosDestacados() {
     let cartelera = document.getElementsByClassName("eventos-grid")[0];
-    let ultimosEventos = eventos.slice(-3);
+    let ultimosEventos = eventos
+    .sort((a, b) => new Date(a.fecha) - new Date(b.fecha)) 
+    .slice(0, 3); 
 
     cartelera.innerHTML = ""; 
 
