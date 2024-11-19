@@ -323,6 +323,10 @@ textarea {
     background-color: var(--acento-secundario); 
 }
 
+#limpiarBtn{
+    margin-top: 20px;
+}
+
 /* resultados */
 #resultado {
     color: #196333;       

@@ -294,6 +294,11 @@ function actualizarEventosDestacados() {
 
         cartelera.appendChild(articulo);
     }  
+
+    document.getElementById("limpiarBtn").addEventListener("click", function() {
+        actualziarTabla(eventos);
+        document.getElementById("textoFiltro").value="";
+    })
 };
 
 
