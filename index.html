@@ -41,7 +41,7 @@
     <section class="evento-form" id="formulario">
         <h2>Registrar un Nuevo Evento</h2>
         <form id="evento-form">
-            <div class="formulario">
+            <div class="formulario" id="contenedorNombre">
                 <label for="evento-nombre">Nombre del Evento</label>
                 <input type="text" id="evento-nombre" name="evento-nombre" required>
             </div>
@@ -49,10 +49,10 @@
             <div class="formulario" id="form">
                 <label>Tipo de Evento</label>                
                 <div class="radio-group">
-                    <input type="radio" id="concierto" name="evento-tipo" value="concierto">
+                    <input type="radio" id="concierto" name="evento-tipo" value="concierto" >
                     <label for="concierto">Concierto</label>
     
-                    <input type="radio" id="exposicion" name="evento-tipo" value="exposicion">
+                    <input type="radio" id="exposicion" name="evento-tipo" value="exposicion" checked>
                     <label for="exposicion">Exposición</label>
     
                     <input type="radio" id="feria" name="evento-tipo" value="feria">
@@ -60,12 +60,12 @@
                 </div>
             </div>
     
-            <div class="formulario">
+            <div class="formulario" id="contenedorFecha">
                 <label for="evento-fecha">Fecha del Evento</label>
                 <input type="date" id="evento-fecha" name="evento-fecha" required>
             </div>
     
-            <div class="formulario">
+            <div class="formulario" id="contenedorDireccion">
                 <label for="evento-direccion">Dirección</label>
                 <input type="text" id="evento-direccion" name="evento-direccion" required>
             </div>
@@ -83,9 +83,9 @@
                 </select>
             </div>
     
-            <div class="formulario">
+            <div class="formulario" id="contenedorCapacidad">
                 <label for="evento-capacidad">Capacidad del Evento</label>
-                <input type="number" id="evento-capacidad" name="evento-capacidad" required>
+                <input type="number" id="evento-capacidad" name="evento-capacidad" min="0" required>
             </div>
     
             <div class="formulario">
@@ -93,18 +93,18 @@
                 <input type="checkbox" id="evento-gratuito" name="evento-gratuito">
             </div>
     
-            <div class="formulario">
+            <div class="formulario" id="contenedorPrecio">
                 <label for="evento-costo">Costo de Entrada</label>
-                <input type="number" id="evento-costo" name="evento-costo" value="0" required>
+                <input type="number" id="evento-costo" name="evento-costo" value="0" min="0" required>
             </div>
     
-            <div class="formulario">
+            <div class="formulario" >
                 <label for="evento-puntuacion">Valoración del Evento: <span id="valorPuntuacion">3</span></label>
                 <input type="range" id="evento-puntuacion" name="evento-puntuacion" min="1" max="5" value="3" required>
             </div>
     
             <div class="formulario">
-                <label for="evento-notas">Observaciones</label>
+                <label for="evento-notas">Observaciones (Opcional)</label>
                 <textarea id="evento-notas" name="evento-notas"></textarea>
             </div>
     

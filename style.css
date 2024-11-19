@@ -197,6 +197,10 @@ nav ul li a:hover {
     margin-bottom: 20px;
 }
 
+.formulario p {
+    color: #F54949;
+}
+
 .formulario label {
     display: block;
     color: #f5f5f5;

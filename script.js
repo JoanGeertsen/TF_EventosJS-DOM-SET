@@ -9,6 +9,29 @@ let proximo = (function () {
     };
 })();
 
+function setearError(mensaje, campo) {
+    const divError = document.getElementById(`contenedor${campo}`); 
+
+    const parrafoError = document.createElement('p');
+    parrafoError.classList.add('error');    
+    parrafoError.textContent = mensaje;     
+    divError.appendChild(parrafoError); 
+
+    document.querySelector(`#contenedor${campo} input`).style.border = "2px solid red";      
+}
+
+function borrarError() {   
+    // Elimina todos los parrafos de error de los contenedores
+    document.querySelectorAll('.formulario .error').forEach(parrafo => {
+        parrafo.remove();
+    });
+
+    // Restablecer el borde de todos los inputs dentro de los contenedores
+    document.querySelectorAll('.formulario input').forEach(input => {
+        input.style.border = "2px solid #3cf47c"; 
+    });
+}
+
 function actualziarTabla(tabla){
     const tablaResultados = document.getElementById('tabla-resultados').querySelector('tbody');
 
@@ -130,20 +153,42 @@ function agregarEvento() {
     const valoracion = document.getElementById('evento-puntuacion').value;
     const observaciones = document.getElementById('evento-notas').value;
 
-    
-
     // Validaciones
-    if (!eventoNombre || !tipoEvento || !fechaEvento || !direccion || !capacidad || !valoracion) {
-        alert("Por favor, complete todos los campos requeridos.");
-        return;
+    borrarError();
+    let valido = true;
+
+    if(!eventoNombre || eventoNombre.trim() === ""){
+        setearError("Debe ingresar un nombre válido", "Nombre");
+        valido = false;
     }
+
+    if(!fechaEvento || new Date(fechaEvento) < new Date()){
+        setearError("Debe ingresar una fecha válida", "Fecha");
+        valido = false;
+    }
+
+    if(!direccion || direccion.trim() === ""){
+        setearError("Debe ingresar una direccion válida", "Direccion");
+        valido = false;
+    }
+
+    if(!capacidad || capacidad <= 0){
+        setearError("Debe ingresar una capacidad válida", "Capacidad");
+        valido = false;
+    }
+
+    if(!costoEntrada || costoEntrada < 0){
+        setearError("Debe ingresar un costo válido", "Precio");
+        valido = false;
+    }   
 
     // Verifica si ya existe un evento con el mismo nombre
     if (eventos.some(evento => evento.nombre === eventoNombre)) {
-        alert("El nombre del evento ya está registrado.");
+        setearError("Este nombre ya está registrado", "Nombre");
+        valido = false;
     }
     
-    else
+    if (valido)
     {
          // Crea el objeto del evento
          const evento = {
@@ -163,9 +208,9 @@ function agregarEvento() {
         eventos.push(evento); console.log("Evento creado");
 
         mensajeEvento(evento);
-
         actualziarTabla(eventos);
         actualizarEventosDestacados();
+        borrarError();
     }        
 };
 
@@ -234,7 +279,7 @@ function actualizarEventosDestacados() {
         `;
 
         cartelera.appendChild(articulo);
-    }        
+    }  
 };
 
 
