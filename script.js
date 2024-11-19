@@ -98,12 +98,28 @@ function editarEvento(nombreEvento){
 
 }
 
+function modificarEvento(evento){    
+    evento.tipo = tipoEvento = document.querySelector('input[name="evento-tipo"]:checked').value;
+    evento.fecha = document.getElementById('evento-fecha').value;
+    evento.direccion = document.getElementById('evento-direccion').value;
+    evento.ciudad = document.getElementById('evento-cidad').value;
+    evento.capacidad = document.getElementById('evento-capacidad').value;
+    evento.gratuito = document.getElementById('evento-gratuito').checked;
+    evento.costo = document.getElementById('evento-costo').value;
+    evento.valoracion = document.getElementById('evento-puntuacion').value;
+    evento.observaciones = document.getElementById('evento-notas').value;
+
+    actualziarTabla(eventos);
+}
+
 document.getElementById('boton-actualizar').addEventListener('click', function() {
     let nombreEvento = document.getElementById('evento-nombre').value;
     const index = eventos.findIndex(evento => evento.nombre === nombreEvento);
-    eventos.splice(index, 1);
+    //eventos.splice(index, 1);
+    let evento = eventos[index]; mensajeEvento(evento);
 
-    agregarEvento();
+    modificarEvento(evento);
+    //agregarEvento();
 
 
     document.getElementById("boton-enviar").style.display = "block";
@@ -265,9 +281,7 @@ function actualizarEventosDestacados() {
     });
 
     // Muestra u oculta el elemento dummy según el número de eventos
-    if (eventos.length > 0)    
-        document.getElementById("dummy").style.display = "none";
-    else
+    if (eventos.length <= 0)      
     {
         let articulo = document.createElement('article');
         articulo.classList.add("evento");
